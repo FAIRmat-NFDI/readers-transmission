@@ -3,3 +3,4 @@ try:
 except ImportError:
     __version__ = ''
 
+from .readers import *

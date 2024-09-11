@@ -23,12 +23,16 @@ classifiers = [
     "Programming Language :: Python :: 3.9",
     "License :: OSI Approved :: Apache Software License",
 ]
-dependencies = []
+dependencies = [
+    "numpy",
+    "pandas",
+    "pint",
+]
 [project.optional-dependencies]
 dev = [
+    "pre-commit",
     "pytest",
     "ruff",
-    "pre-commit",
     "structlog",
 ]
 

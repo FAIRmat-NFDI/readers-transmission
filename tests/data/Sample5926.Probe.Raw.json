@@ -1,0 +1,52 @@
+{
+  "sample_name": "Sample5926",
+  "start_datetime": "2024-02-27T14:48:54.00Z",
+  "analyst_name": "Hiroki Tanaka",
+  "instrument_name": "Lambda 1050",
+  "instrument_serial_number": "1050L1611222",
+  "instrument_firmware_version": "PerkinElmer UV WinLab 6.3.2.0749 / 2.02.06 Lambda 900 UV/VIS/NIR, Jan 28 2016 16:58:34",
+  "is_d2_lamp_used": false,
+  "is_tungsten_lamp_used": true,
+  "sample_beam_position": "Front",
+  "common_beam_mask_percentage": "90.0",
+  "is_common_beam_depolarizer_on": true,
+  "attenuation_percentage": {
+    "sample": "1",
+    "reference": "1"
+  },
+  "detector_integration_time": [
+    {
+      "wavelength": "3350.0",
+      "value": "0.28"
+    },
+    {
+      "wavelength": "860.9",
+      "value": "0.24"
+    }
+  ],
+  "detector_NIR_gain": [
+    {
+      "wavelength": null,
+      "value": "4.5"
+    }
+  ],
+  "detector_change_wavelength": "(1,)",
+  "detector_module": "150mm sphere",
+  "polarizer_angle": "20.0",
+  "ordinate_type": "%T",
+  "wavelength_units": "nm",
+  "monochromator_slit_width": [
+    {
+      "wavelength": "3350.0",
+      "value": "2.4"
+    },
+    {
+      "wavelength": "860.8",
+      "value": "2.05"
+    }
+  ],
+  "monochromator_change_wavelength": "(1,)",
+  "lamp_change_wavelength": "(1,)",
+  "measured_wavelength": "(111,)",
+  "measured_ordinate": "(111,)"
+}

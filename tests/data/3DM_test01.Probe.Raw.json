@@ -1,0 +1,68 @@
+{
+  "sample_name": "Sample5933",
+  "start_datetime": "2024-02-27T16:45:12.00Z",
+  "analyst_name": "Administrator",
+  "instrument_name": "Lambda 1050",
+  "instrument_serial_number": "1050L1611222",
+  "instrument_firmware_version": "PerkinElmer UV WinLab 6.3.2.0749 / 2.02.06 Lambda 900 UV/VIS/NIR, Jan 28 2016 16:58:34",
+  "is_d2_lamp_used": true,
+  "is_tungsten_lamp_used": true,
+  "sample_beam_position": "Front",
+  "common_beam_mask_percentage": "100.0",
+  "is_common_beam_depolarizer_on": true,
+  "attenuation_percentage": {
+    "sample": "100",
+    "reference": "100"
+  },
+  "detector_integration_time": [
+    {
+      "wavelength": "3350.0",
+      "value": "0.18"
+    },
+    {
+      "wavelength": "1800.8",
+      "value": "0.17"
+    },
+    {
+      "wavelength": "860.8",
+      "value": "0.16"
+    }
+  ],
+  "detector_NIR_gain": [
+    {
+      "wavelength": "3350.0",
+      "value": "1.0"
+    },
+    {
+      "wavelength": "1800.8",
+      "value": "1.0"
+    }
+  ],
+  "detector_change_wavelength": "(2,)",
+  "detector_module": "uv/vis/nir detector",
+  "polarizer_angle": "0.0",
+  "ordinate_type": "%T",
+  "wavelength_units": "nm",
+  "monochromator_slit_width": [
+    {
+      "wavelength": "3350.0",
+      "value": "8.0"
+    },
+    {
+      "wavelength": "1800.8",
+      "value": "2.1"
+    },
+    {
+      "wavelength": "860.8",
+      "value": "1.95"
+    },
+    {
+      "wavelength": "750.0",
+      "value": "1.75"
+    }
+  ],
+  "monochromator_change_wavelength": "(1,)",
+  "lamp_change_wavelength": "(1,)",
+  "measured_wavelength": "(281,)",
+  "measured_ordinate": "(281,)"
+}

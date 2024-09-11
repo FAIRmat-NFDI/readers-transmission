@@ -1,0 +1,52 @@
+{
+  "sample_name": "F4-P3HT 1-10 0,5 mgml",
+  "start_datetime": "2018-12-18T14:45:59.00Z",
+  "analyst_name": "Analyst",
+  "instrument_name": "Lambda 950",
+  "instrument_serial_number": "950N9080502",
+  "instrument_firmware_version": "PerkinElmer UV WinLab 6.3.2.0749 / 1.61.00 Lambda 900",
+  "is_d2_lamp_used": true,
+  "is_tungsten_lamp_used": true,
+  "sample_beam_position": "Front",
+  "common_beam_mask_percentage": "100.0",
+  "is_common_beam_depolarizer_on": null,
+  "attenuation_percentage": {
+    "sample": "100",
+    "reference": "100"
+  },
+  "detector_integration_time": [
+    {
+      "wavelength": "3350.0",
+      "value": "0.2"
+    },
+    {
+      "wavelength": "860.8",
+      "value": "0.2"
+    }
+  ],
+  "detector_NIR_gain": [
+    {
+      "wavelength": null,
+      "value": "1.0"
+    }
+  ],
+  "detector_change_wavelength": "(1,)",
+  "detector_module": "uv/vis/nir detector",
+  "polarizer_angle": null,
+  "ordinate_type": "A",
+  "wavelength_units": "nm",
+  "monochromator_slit_width": [
+    {
+      "wavelength": "3350.0",
+      "value": "servo"
+    },
+    {
+      "wavelength": "860.8",
+      "value": "2.0"
+    }
+  ],
+  "monochromator_change_wavelength": "(1,)",
+  "lamp_change_wavelength": "(1,)",
+  "measured_wavelength": "(2181,)",
+  "measured_ordinate": "(2181,)"
+}

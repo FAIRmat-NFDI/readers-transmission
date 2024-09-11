@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Dict
 from datetime import datetime
 import numpy as np
 import pint
@@ -110,7 +110,7 @@ def read_is_tungsten_lamp_used(metadata: list, logger: 'BoundLogger') -> bool:
     return None
 
 
-def read_attenuation_percentage(metadata: list, logger) -> dict[str, int]:
+def read_attenuation_percentage(metadata: list, logger) -> Dict[str, int]:
     """
     Reads the sample and reference attenuation percentage from the metadata
 

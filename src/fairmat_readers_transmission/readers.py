@@ -18,7 +18,7 @@
 
 from collections import defaultdict
 from inspect import isfunction
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, Dict
 
 import numpy as np
 import pandas as pd
@@ -32,7 +32,7 @@ if TYPE_CHECKING:
     )
 
 
-def read_file(file_path: str, logger: 'BoundLogger' = None) -> dict[str, Any]:
+def read_file(file_path: str, logger: 'BoundLogger' = None) -> Dict[str, Any]:
     """
     Main function to figure out which specific file format to read.
 
@@ -50,7 +50,7 @@ def read_file(file_path: str, logger: 'BoundLogger' = None) -> dict[str, Any]:
 
 def read_perkin_elmer_asc(
     file_path: str, logger: 'BoundLogger' = None
-) -> dict[str, Any]:
+) -> Dict[str, Any]:
     """
     Function for reading the transmission data from PerkinElmer *.asc.
 
@@ -78,7 +78,7 @@ def read_perkin_elmer_asc(
         read_start_datetime,
     )
 
-    metadata_map: dict[str, Any] = {
+    metadata_map: Dict[str, Any] = {
         'sample_name': read_sample_name,
         'start_datetime': read_start_datetime,
         'analyst_name': 7,
@@ -103,7 +103,7 @@ def read_perkin_elmer_asc(
         'lamp_change_wavelength': read_lamp_change_wavelength,
     }
 
-    def restructure_measured_data(data: pd.DataFrame) -> dict[str, np.ndarray]:
+    def restructure_measured_data(data: pd.DataFrame) -> Dict[str, np.ndarray]:
         """
         Builds the data entry dict from the data in a pandas dataframe.
 
@@ -113,13 +113,13 @@ def read_perkin_elmer_asc(
         Returns:
             Dict[str, np.ndarray]: The dict with the measured data.
         """
-        output: dict[str, Any] = {}
+        output: Dict[str, Any] = {}
         output['measured_wavelength'] = data.index.values
         output['measured_ordinate'] = data.values[:, 0] * ureg.dimensionless
 
         return output
 
-    output: dict[str, Any] = defaultdict(lambda: None)
+    output: Dict[str, Any] = defaultdict(lambda: None)
     data_start_ind = '#DATA'
 
     with open(file_path, encoding='utf-8') as file_obj:

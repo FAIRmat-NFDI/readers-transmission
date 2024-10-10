@@ -11,17 +11,17 @@
   "common_beam_mask_percentage": "90.0",
   "is_common_beam_depolarizer_on": true,
   "attenuation_percentage": {
-    "sample": "1",
-    "reference": "1"
+    "sample": "1.0",
+    "reference": "1.0"
   },
   "detector_integration_time": [
     {
-      "wavelength": "3350.0",
-      "value": "0.28"
-    },
-    {
       "wavelength": "860.9",
       "value": "0.24"
+    },
+    {
+      "wavelength": "3350.0",
+      "value": "0.28"
     }
   ],
   "detector_NIR_gain": [
@@ -37,12 +37,12 @@
   "wavelength_units": "nm",
   "monochromator_slit_width": [
     {
-      "wavelength": "3350.0",
-      "value": "2.4"
-    },
-    {
       "wavelength": "860.8",
       "value": "2.05"
+    },
+    {
+      "wavelength": "3350.0",
+      "value": "2.4"
     }
   ],
   "monochromator_change_wavelength": "(1,)",

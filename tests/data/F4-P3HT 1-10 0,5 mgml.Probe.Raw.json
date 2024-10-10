@@ -11,16 +11,16 @@
   "common_beam_mask_percentage": "100.0",
   "is_common_beam_depolarizer_on": null,
   "attenuation_percentage": {
-    "sample": "100",
-    "reference": "100"
+    "sample": "100.0",
+    "reference": "100.0"
   },
   "detector_integration_time": [
     {
-      "wavelength": "3350.0",
+      "wavelength": "860.8",
       "value": "0.2"
     },
     {
-      "wavelength": "860.8",
+      "wavelength": "3350.0",
       "value": "0.2"
     }
   ],
@@ -37,12 +37,12 @@
   "wavelength_units": "nm",
   "monochromator_slit_width": [
     {
-      "wavelength": "3350.0",
-      "value": "servo"
-    },
-    {
       "wavelength": "860.8",
       "value": "2.0"
+    },
+    {
+      "wavelength": "3350.0",
+      "value": "servo"
     }
   ],
   "monochromator_change_wavelength": "(1,)",

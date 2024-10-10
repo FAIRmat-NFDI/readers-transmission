@@ -128,9 +128,9 @@ def read_attenuation_percentage(metadata: list, logger) -> Dict[str, int]:
             if val == '':
                 continue
             if 'S' in key:
-                output_dict['sample'] = int(val) * ureg.dimensionless
+                output_dict['sample'] = float(val) * ureg.dimensionless
             elif 'R' in key:
-                output_dict['reference'] = int(val) * ureg.dimensionless
+                output_dict['reference'] = float(val) * ureg.dimensionless
     except ValueError as e:
         if logger is not None:
             logger.warning(f'Error in reading the attenuation data.\n{e}')

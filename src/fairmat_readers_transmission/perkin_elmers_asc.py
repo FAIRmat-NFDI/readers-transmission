@@ -167,18 +167,19 @@ def read_long_line(line: str, logger: 'BoundLogger') -> list:
     """
     A long line in the data file contains of a quantity at multiple wavelengths. These
     values are available within one line but separated by whitespaces. The function
-    generates a list of wavelength-value pairs.
-    Eg. [
-            {'wavelength': 3350, 'value': 2.4},
-            {'wavelength': 860.8, 'value': 2.05},
-        ],
+    generates a list of wavelength range and value.
+    Eg. "3350/2.4 860.8/2.05" will give
+    [
+        {'wavelength_upper_limit': 860.8, 'wavelength_lower_limit': None,  'value': 2.05},
+        {'wavelength_upper_limit': 3350, 'wavelength_lower_limit': 860.8, 'value': 2.4},
+    ],
 
     Args:
         line (str): The line to parse.
         logger (BoundLogger): A structlog logger.
 
     Returns:
-        list: The list of wavelength-value pairs.
+        list: The list of wavelength range and value.
     """
 
     def try_float(val: str) -> float:
@@ -187,16 +188,16 @@ def read_long_line(line: str, logger: 'BoundLogger') -> list:
         except ValueError:
             return val
 
-    output_list = []
+    wavelength_value_pairs_list = []
     for key_value_pair in line.split():
         key_value_pair_list = key_value_pair.split('/')
         try:
             if len(key_value_pair_list) == 1:
-                output_list.append(
+                wavelength_value_pairs_list.append(
                     {'wavelength': None, 'value': try_float(key_value_pair_list[0])}
                 )
             elif len(key_value_pair_list) == 2:  # noqa: PLR2004
-                output_list.append(
+                wavelength_value_pairs_list.append(
                     {
                         'wavelength': float(key_value_pair_list[0]) * ureg.nanometer,
                         'value': try_float(key_value_pair_list[1]),
@@ -210,6 +211,21 @@ def read_long_line(line: str, logger: 'BoundLogger') -> list:
         except ValueError as e:
             if logger is not None:
                 logger.warning(f'Error in reading the long line.\n{e}')
+
+    # convert wavelengths to range of wavelengths
+    wavelength_value_pairs_list.sort(key=lambda x: x['wavelength'])
+    output_list = []
+    for i, wavelength_value_pair in enumerate(wavelength_value_pairs_list):
+        range_value_pair = {
+            'wavelength_upper_limit': wavelength_value_pair['wavelength'],
+            'wavelength_lower_limit': None,
+            'value': wavelength_value_pair['value'],
+        }
+        if i - 1 >= 0:
+            range_value_pair['wavelength_lower_limit'] = wavelength_value_pairs_list[
+                i - 1
+            ]['wavelength']
+        output_list.append(range_value_pair)
 
     return output_list
 
@@ -480,13 +496,16 @@ def read_perkin_elmer_asc(
         'common_beam_mask_percentage': 45,
         'is_common_beam_depolarizer_on': read_is_common_beam_depolarizer_on,
         'attenuation_percentage': read_attenuation_percentage,
+        # 'detectors': read_detectors,
         'detector_integration_time': read_detector_integration_time,
         'detector_NIR_gain': read_detector_nir_gain,
+        # 'detector_gain': read_detector_gain,
         'detector_change_wavelength': read_detector_change_wavelength,
         'detector_module': read_detector_module,
         'polarizer_angle': read_polarizer_angle,
         'ordinate_type': 80,
         'wavelength_units': 79,
+        # 'monochromators': read_monochromators,
         'monochromator_slit_width': read_monochromator_slit_width,
         'monochromator_change_wavelength': read_monochromator_change_wavelength,
         'lamp_change_wavelength': read_lamp_change_wavelength,

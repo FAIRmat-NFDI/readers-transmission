@@ -390,6 +390,70 @@ def read_detector_module(metadata: list, logger: 'BoundLogger') -> str:
     return None
 
 
+def read_lamps(metadata: list, logger: 'BoundLogger') -> list:
+    """
+    Reads the lamps from the metadata.
+
+    Args:
+        metadata (list): The metadata list.
+        logger (BoundLogger): A structlog logger.
+
+    Returns:
+        list: List of dicts containing type, lower and upper wavelength.
+    """
+    lamps = []
+    if read_is_d2_lamp_used(metadata, logger):
+        lamps.append(
+            {
+                'type': 'Deuterium',
+                'wavelength_lower_limit': None,
+                'wavelength_upper_limit': None,
+            }
+        )
+    if read_is_tungsten_lamp_used(metadata, logger):
+        lamps.append(
+            {
+                'type': 'Tungsten',
+                'wavelength_lower_limit': None,
+                'wavelength_upper_limit': None,
+            }
+        )
+
+    lamp_change_points = read_lamp_change_wavelength(metadata, logger)
+    if lamp_change_points is not None and len(lamp_change_points) == len(lamps) - 1:
+        for idx, lamp_change_point in enumerate(lamp_change_points):
+            lamps[idx]['wavelength_upper_limit'] = lamp_change_point
+            lamps[idx + 1]['wavelength_lower_limit'] = lamp_change_point
+
+
+def read_detectors(metadata: list, logger: 'BoundLogger') -> list:
+    """
+    Reads the detectors from the metadata.
+
+    Args:
+        metadata (list): The metadata list.
+        logger (BoundLogger): A structlog logger.
+
+    Returns:
+        list: List of dicts containing type, lower and upper wavelength.
+    """
+    detectors = []
+    detector_change_points = read_detector_change_wavelength(metadata, logger)
+    if detector_change_points is not None:
+        for idx, detector_change_point in enumerate(detector_change_points):
+            detectors.append(
+                {
+                    'type': 'UV/VIS',
+                    'wavelength_lower_limit': None,
+                    'wavelength_upper_limit': None,
+                }
+            )
+            detectors[idx]['wavelength_upper_limit'] = detector_change_point
+            if idx + 1 < len(detector_change_points):
+                detectors[idx + 1]['wavelength_lower_limit'] = detector_change_point
+    return detectors
+
+
 def read_perkin_elmer_asc(
     file_path: str, logger: 'BoundLogger' = None
 ) -> Dict[str, Any]:
@@ -411,8 +475,7 @@ def read_perkin_elmer_asc(
         'instrument_name': 11,
         'instrument_serial_number': 12,
         'instrument_firmware_version': 13,
-        'is_d2_lamp_used': read_is_d2_lamp_used,
-        'is_tungsten_lamp_used': read_is_tungsten_lamp_used,
+        'lamps': read_lamps,
         'sample_beam_position': 44,
         'common_beam_mask_percentage': 45,
         'is_common_beam_depolarizer_on': read_is_common_beam_depolarizer_on,

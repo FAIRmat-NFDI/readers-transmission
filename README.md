@@ -27,9 +27,9 @@ data_dict =  read_perkin_elmers_asc(file_path)
 
 Currently, the following file extensions are supported:
 
-| File Extension    | Corresponding Reader Function     |
-| ----------------- | --------------------------------- |
-| `.asc`            | `read_perkin_elmers_asc`          |
+| Vendor            | File Extension | Corresponding Reader Function     |
+| ----------------- | -------------- | --------------------------------- |
+| Perkin Elmers     | `.asc`         |`read_perkin_elmers_asc`           |
 
 ## Development
 The package is still under development. To contribute, start with simply raising an

@@ -16,8 +16,9 @@
 # limitations under the License.
 #
 
-from typing import TYPE_CHECKING, Dict
 from datetime import datetime
+from typing import TYPE_CHECKING, Dict
+
 import numpy as np
 import pint
 

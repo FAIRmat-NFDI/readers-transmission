@@ -16,9 +16,8 @@
 # limitations under the License.
 #
 
-import pytest
 import pint
-
+import pytest
 from fairmat_readers_transmission.perkin_elmers_asc import (
     read_attenuation_percentage,
     read_long_line,

@@ -198,11 +198,8 @@ def read_long_line(line: str, logger: 'BoundLogger') -> list:
                         'value': try_float(key_value_pair_list[1]),
                     }
                 )
-            else:
-                if logger is not None:
-                    logger.warning(
-                        f'Unexpected value while reading the long line: {line}'
-                    )
+            elif logger is not None:
+                logger.warning(f'Unexpected value while reading the long line: {line}')
         except ValueError as e:
             if logger is not None:
                 logger.warning(f'Error in reading the long line.\n{e}')

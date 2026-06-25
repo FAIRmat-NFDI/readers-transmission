@@ -58,6 +58,6 @@ asc_test_files = glob.glob(os.path.join(os.path.dirname(__file__), 'data', '*.as
 def test_read_perkin_elmer_asc(asc_file):
     output = read_perkin_elmer_asc(asc_file)
     convert_quantity_to_string(output)
-    with open(f'{asc_file.replace(".asc",".json")}', 'r', encoding='utf-8') as f:
+    with open(f'{asc_file.replace(".asc", ".json")}', 'r', encoding='utf-8') as f:
         reference = json.load(f)
     assert output == reference

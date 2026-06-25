@@ -148,6 +148,8 @@ def read_perkin_elmer_asc(
             )
 
     output.update(restructure_measured_data(data))
-    output['measured_wavelength'] *= ureg(output['wavelength_units'])
+    output['measured_wavelength'] = output['measured_wavelength'] * ureg(
+        output['wavelength_units']
+    )
 
     return output
